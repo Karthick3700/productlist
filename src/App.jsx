@@ -81,9 +81,11 @@ const data = [
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const [confetti, setConfetti] = useState(false);
 
   const showModal = () => {
     setModalShow(true);
+    setConfetti(true);
   };
 
   const handleAddToCart = useCallback((product) => {
@@ -142,7 +144,9 @@ function App() {
             <h2>Desserts</h2>
             <div className="products_wrapper row gy-5">
               {data.map((product) => {
-                const cartItem = cartItems.find((item) => item.id === product.id);
+                const cartItem = cartItems.find(
+                  (item) => item.id === product.id
+                );
                 const count = cartItem ? cartItem.count : 0;
                 return (
                   <ProductCard
@@ -172,6 +176,7 @@ function App() {
           }}
           cartItems={cartItems}
           clearCartItems={clearCartItems}
+          confetti={confetti}
         />
         <span className="attribution gap-2">
           Coded by{" "}
